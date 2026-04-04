@@ -1,13 +1,17 @@
-export class PlayerSnowball extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y, key, frame) {
+import Sprite = Phaser.Physics.Arcade.Sprite;
+import {MainGame} from "./Game";
+
+export class PlayerSnowball extends Sprite {
+
+    constructor(scene: MainGame, x: number, y: number, key: string, frame: string) {
         super(scene, x, y, key, frame);
 
         this.setScale(0.5);
     }
 
-    fire(x, y) {
-        this.body.enable = true;
-        this.body.reset(x + 10, y - 44);
+    fire(x: number, y: number) {
+        this.body!.enable = true;
+        this.body!.reset(x + 10, y - 44);
 
         this.setActive(true);
         this.setVisible(true);
@@ -22,10 +26,11 @@ export class PlayerSnowball extends Phaser.Physics.Arcade.Sprite {
 
         this.setVelocityX(0);
 
-        this.body.enable = false;
+        this.body!.enable = false;
+        return this;
     }
 
-    preUpdate(time, delta) {
+    preUpdate(time: number, delta: number) {
         super.preUpdate(time, delta);
 
         if (this.x <= -64) {
