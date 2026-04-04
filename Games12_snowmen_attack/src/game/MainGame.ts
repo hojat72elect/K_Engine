@@ -51,13 +51,13 @@ export class MainGame extends Phaser.Scene {
             color: '#ffffff'
         });
 
-        this.input.keyboard.once('keydown-SPACE', this.start, this);
-        this.input.keyboard.once('keydown-UP', this.start, this);
-        this.input.keyboard.once('keydown-DOWN', this.start, this);
+        this.input.keyboard!.once('keydown-SPACE', this.start, this);
+        this.input.keyboard!.once('keydown-UP', this.start, this);
+        this.input.keyboard!.once('keydown-DOWN', this.start, this);
     }
 
     start() {
-        this.input.keyboard.removeAllListeners();
+        this.input.keyboard!.removeAllListeners();
 
         this.tweens.add({
             targets: this.infoPanel,
@@ -110,7 +110,7 @@ export class MainGame extends Phaser.Scene {
             this.registry.set('highscore', this.score);
         }
 
-        this.input.keyboard.once('keydown-SPACE', () => {
+        this.input.keyboard!.once('keydown-SPACE', () => {
             this.scene.start('MainMenu');
         }, this);
 
