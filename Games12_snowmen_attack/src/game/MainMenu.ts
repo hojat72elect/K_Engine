@@ -1,15 +1,16 @@
-export class MainMenu extends Phaser.Scene {
+import {Scene} from 'phaser';
+
+export class MainMenu extends Scene {
     constructor() {
         super('MainMenu');
     }
 
     create() {
-        this.sound.play('music', {loop: true, delay: 2});
 
+        this.sound.play('music', {loop: true, delay: 2});
         this.add.shader('snow', 512, 384, 1024, 768);
 
         //  Intro snowball fight
-
         let ball1 = this.add.image(-64, 300, 'sprites', 'snowball1');
         let ball2 = this.add.image(1088, 360, 'sprites', 'snowball1');
         let ball3 = this.add.image(-64, 320, 'sprites', 'snowball1');
@@ -61,16 +62,12 @@ export class MainMenu extends Phaser.Scene {
             }
         });
 
-        this.input.keyboard.once('keydown-SPACE', () => {
-
+        this.input.keyboard!.once('keydown-SPACE', () => {
             this.scene.start('MainGame');
-
         }, this);
 
         this.input.once('pointerdown', () => {
-
             this.scene.start('MainGame');
-
         });
     }
 }

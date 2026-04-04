@@ -1,7 +1,7 @@
 import {Game, Scale, Types, AUTO} from 'phaser';
 import {Boot} from "./Boot.ts";
 import {Preloader} from "./Preloader";
-import {MainMenu} from "./MainMenu";
+import {MainMenu} from "./MainMenu.ts";
 import {MainGame} from "./Game";
 
 const config: Types.Core.GameConfig = {
