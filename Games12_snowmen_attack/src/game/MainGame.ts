@@ -39,7 +39,11 @@ export class MainGame extends Phaser.Scene {
 
         this.infoPanel = this.add.image(512, 384, 'sprites', 'controls');
         this.scoreText = this.add.text(140, 2, this.score, {fontFamily: 'Arial', fontSize: 32, color: '#ffffff'});
-        this.highscoreText = this.add.text(820, 2, this.highscore, {fontFamily: 'Arial', fontSize: 32, color: '#ffffff'});
+        this.highscoreText = this.add.text(820, 2, this.highscore, {
+            fontFamily: 'Arial',
+            fontSize: 32,
+            color: '#ffffff'
+        });
 
         this.input.keyboard.once('keydown-SPACE', this.start, this);
         this.input.keyboard.once('keydown-UP', this.start, this);

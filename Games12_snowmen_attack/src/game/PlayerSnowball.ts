@@ -1,5 +1,5 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
-import {MainGame} from "./Game";
+import {MainGame} from "./MainGame.ts";
 
 export class PlayerSnowball extends Sprite {
 
