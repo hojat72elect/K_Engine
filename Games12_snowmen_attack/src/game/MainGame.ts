@@ -1,16 +1,18 @@
 import Track from './Track.js';
 import Player from './Player.js';
+import Image=Phaser.GameObjects.Image;
 
 export class MainGame extends Phaser.Scene {
+
+    score = 0;
+    highscore = 0;
+    tracks: Track[];
+    player: Player;
+    infoPanel:Image;
+
     constructor() {
         super('MainGame');
 
-        this.player;
-        this.tracks;
-
-        this.score = 0;
-        this.highscore = 0;
-        this.infoPanel;
 
         this.scoreTimer;
         this.scoreText;
