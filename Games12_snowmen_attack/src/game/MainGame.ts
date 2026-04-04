@@ -1,6 +1,8 @@
 import Track from './Track.js';
 import Player from './Player.js';
-import Image=Phaser.GameObjects.Image;
+import Image = Phaser.GameObjects.Image;
+import Text = Phaser.GameObjects.Text;
+import TimerEvent = Phaser.Time.TimerEvent;
 
 export class MainGame extends Phaser.Scene {
 
@@ -8,15 +10,13 @@ export class MainGame extends Phaser.Scene {
     highscore = 0;
     tracks: Track[];
     player: Player;
-    infoPanel:Image;
+    infoPanel: Image;
+    scoreText: Text;
+    highscoreText: Text;
+    scoreTimer: TimerEvent;
 
     constructor() {
         super('MainGame');
-
-
-        this.scoreTimer;
-        this.scoreText;
-        this.highscoreText;
     }
 
     create() {
@@ -40,8 +40,12 @@ export class MainGame extends Phaser.Scene {
         this.add.image(1024 - 16, 0, 'sprites', 'panel-best').setOrigin(1, 0);
 
         this.infoPanel = this.add.image(512, 384, 'sprites', 'controls');
-        this.scoreText = this.add.text(140, 2, this.score, {fontFamily: 'Arial', fontSize: 32, color: '#ffffff'});
-        this.highscoreText = this.add.text(820, 2, this.highscore, {
+        this.scoreText = this.add.text(140, 2, String(this.score), {
+            fontFamily: 'Arial',
+            fontSize: 32,
+            color: '#ffffff'
+        });
+        this.highscoreText = this.add.text(820, 2, String(this.highscore), {
             fontFamily: 'Arial',
             fontSize: 32,
             color: '#ffffff'
@@ -73,7 +77,7 @@ export class MainGame extends Phaser.Scene {
         this.scoreTimer = this.time.addEvent({
             delay: 1000, callback: () => {
                 this.score++;
-                this.scoreText.setText(this.score);
+                this.scoreText.setText(String(this.score));
             }, callbackScope: this, repeat: -1
         });
     }
