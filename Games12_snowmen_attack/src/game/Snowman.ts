@@ -1,12 +1,29 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
+import Clock = Phaser.Time.Clock;
+import TimerEvent = Phaser.Time.TimerEvent;
 import {MainGame} from "./MainGame.ts";
 import {Track} from "./Track.ts";
 
 export class Snowman extends Sprite {
 
+    isAlive = true;
+    isThrowing = false;
+    size: string;
+    time: Clock;
+    sound;
+    speed = 50;
+
+    //  0 = walk, 1 = idle, 2 = throw
+    previousAction = 0;
+
+    currentTrack: Track;
+    maxHitpoints: any;
+    currentHitpoints: any;
+    chooseEvent: TimerEvent;
+
     constructor(scene: MainGame, track: Track, size: string) {
         const frame: string = (size === 'Small') ? 'snowman-small-idle0' : 'snowman-big-idle0';
-        const x = (size === 'Small') ? 80 : -100;
+        const x: number = (size === 'Small') ? 80 : -100;
 
         super(scene, x, track.y, 'sprites', frame);
 
@@ -16,25 +33,16 @@ export class Snowman extends Sprite {
         scene.physics.add.existing(this);
 
         if (size === 'Small') {
-            this.body.setSize(100, 100);
-            this.body.setOffset(20, 40);
+            this.body!.setSize(100, 100);
+            this.body!.setOffset(20, 40);
         } else {
-            this.body.setSize(100, 120);
-            this.body.setOffset(50, 50);
+            this.body!.setSize(100, 120);
+            this.body!.setOffset(50, 50);
         }
 
         this.time = scene.time;
         this.sound = scene.sound;
-
-        this.isAlive = true;
-        this.isThrowing = false;
-
         this.size = size;
-        this.speed = 50;
-
-        //  0 = walk, 1 = idle, 2 = throw
-        this.previousAction = 0;
-
         this.currentTrack = track;
 
         this.play('snowmanIdle' + this.size);
@@ -64,7 +72,7 @@ export class Snowman extends Sprite {
     chooseAction() {
         //  In case it was disabled by a hit
         this.isAlive = true;
-        this.body.enable = true;
+        this.body!.enable = true;
 
         this.setVelocityX(0);
 
@@ -156,9 +164,9 @@ export class Snowman extends Sprite {
 
         this.sound.play('hit-snowman');
 
-        this.body.stop();
+        this.body!.stop();
 
-        this.body.enable = false;
+        this.body!.enable = false;
 
         const knockback = '-=' + Phaser.Math.Between(100, 200).toString();
 
@@ -187,15 +195,16 @@ export class Snowman extends Sprite {
         this.play('snowmanIdle' + this.size);
 
         this.setVelocityX(0);
+        return this;
     }
 
-    preUpdate(time, delta) {
+    preUpdate(time: number, delta: number) {
         super.preUpdate(time, delta);
 
         if (this.x >= 880) {
             this.stop();
 
-            this.scene.gameOver();
+            (this.scene as MainGame).gameOver();
         }
     }
 }
