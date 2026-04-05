@@ -1,4 +1,4 @@
-import {Snowman} from './Snowman.js';
+import {Snowman} from './Snowman.ts';
 import {PlayerSnowball} from './PlayerSnowball.js';
 import {EnemySnowball} from './EnemySnowball.ts';
 import {MainGame} from "./MainGame.ts";

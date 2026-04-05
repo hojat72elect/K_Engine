@@ -1,6 +1,11 @@
-export class Snowman extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, track, size) {
-        const frame = (size === 'Small') ? 'snowman-small-idle0' : 'snowman-big-idle0';
+import Sprite = Phaser.Physics.Arcade.Sprite;
+import {MainGame} from "./MainGame.ts";
+import {Track} from "./Track.ts";
+
+export class Snowman extends Sprite {
+
+    constructor(scene: MainGame, track: Track, size: string) {
+        const frame: string = (size === 'Small') ? 'snowman-small-idle0' : 'snowman-big-idle0';
         const x = (size === 'Small') ? 80 : -100;
 
         super(scene, x, track.y, 'sprites', frame);
