@@ -1,6 +1,6 @@
 import Tomato from './Tomato.js';
 import Bombs from './TomBombs.js';
-import TomatoItem from './TomatoItem.js';
+import {TomatoItem} from './TomatoItem.js';
 
 /**
  * In this fast-paced game, you play as a character on a mission to collect ripe tomatoes while avoiding bombs
