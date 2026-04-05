@@ -1,22 +1,31 @@
-export class Player extends Phaser.Physics.Arcade.Sprite {
+import Sprite = Phaser.Physics.Arcade.Sprite;
+import {MainGame} from "./MainGame.ts";
+import Track from "./Track";
+import Key =Phaser.Input.Keyboard.Key;
 
-    constructor(scene, track) {
+export class Player extends Sprite {
+
+    isAlive = true;
+    isThrowing = false;
+    currentTrack: Track;
+    sound : Phaser.Sound.NoAudioSoundManager | Phaser.Sound.HTML5AudioSoundManager | Phaser.Sound.WebAudioSoundManager;
+    spacebar: Key;
+    up: Key;
+    down: Key;
+
+    constructor(scene: MainGame, track: Track) {
+
         super(scene, 900, track.y, 'sprites', 'idle000');
 
         this.setOrigin(0.5, 1);
-
         scene.add.existing(this);
         scene.physics.add.existing(this);
-
-        this.isAlive = true;
-        this.isThrowing = false;
-
         this.sound = scene.sound;
         this.currentTrack = track;
 
-        this.spacebar = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-        this.up = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
-        this.down = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+        this.spacebar = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        this.up = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        this.down = this.scene.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
         this.play('idle');
     }
