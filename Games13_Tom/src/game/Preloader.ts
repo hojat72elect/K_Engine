@@ -1,4 +1,8 @@
-export class Preloader extends Phaser.Scene {
+import {Scene} from 'phaser';
+import Parse = Phaser.GameObjects.RetroFont.Parse;
+
+export class Preloader extends Scene {
+
     constructor() {
         super('Preloader');
     }
@@ -6,15 +10,7 @@ export class Preloader extends Phaser.Scene {
     preload() {
         this.load.path = 'assets/';
 
-        this.load.image([
-            'background',
-            'floor',
-            'wall',
-            'bomb',
-            'tomato_item',
-            'life',
-            'logo'
-        ]);
+        this.load.image(['background', 'floor', 'wall', 'bomb', 'tomato_item', 'life', 'logo'] as any[]);
 
         this.load.audio('bongo', 'bongojam_f.mp3');
         this.load.audio('pop', 'pop.mp3');
@@ -31,7 +27,7 @@ export class Preloader extends Phaser.Scene {
             this.sound.play('bongo', {loop: true});
 
             const fontData = this.cache.json.get('fontData');
-            this.cache.bitmapFont.add('pixelFont', Phaser.GameObjects.RetroFont.Parse(this, fontData));
+            this.cache.bitmapFont.add('pixelFont', Parse(this, fontData));
 
             this.scene.start('Menu');
         });
