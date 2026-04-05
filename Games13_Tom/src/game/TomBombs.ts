@@ -22,11 +22,12 @@ export class Bombs extends Group {
 
     update() {
         this.children.iterate(bomb => {
-            if (bomb.body.velocity.x < 0) {
-                bomb.setAngularVelocity(-300);
+            if (bomb.body!.velocity.x < 0) {
+                (bomb as any).setAngularVelocity(-300);
             } else {
-                bomb.setAngularVelocity(300);
+                (bomb as any).setAngularVelocity(300);
             }
+            return null;
         });
     }
 }
