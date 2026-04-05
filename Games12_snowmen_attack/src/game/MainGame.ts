@@ -1,5 +1,5 @@
 import Track from './Track.js';
-import Player from './Player.js';
+import {Player} from './Player.js';
 import Image = Phaser.GameObjects.Image;
 import Text = Phaser.GameObjects.Text;
 import TimerEvent = Phaser.Time.TimerEvent;

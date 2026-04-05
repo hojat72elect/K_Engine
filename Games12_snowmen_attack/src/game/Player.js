@@ -1,7 +1,6 @@
-export default class Player extends Phaser.Physics.Arcade.Sprite
-{
-    constructor (scene, track)
-    {
+export class Player extends Phaser.Physics.Arcade.Sprite {
+
+    constructor(scene, track) {
         super(scene, 900, track.y, 'sprites', 'idle000');
 
         this.setOrigin(0.5, 1);
@@ -22,28 +21,23 @@ export default class Player extends Phaser.Physics.Arcade.Sprite
         this.play('idle');
     }
 
-    start ()
-    {
+    start() {
         this.isAlive = true;
         this.isThrowing = false;
 
         this.currentTrack = this.scene.tracks[0];
         this.y = this.currentTrack.y;
-    
+
         this.on('animationcomplete-throwStart', this.releaseSnowball, this);
         this.on('animationcomplete-throwEnd', this.throwComplete, this);
 
         this.play('idle', true);
     }
 
-    moveUp ()
-    {
-        if (this.currentTrack.id === 0)
-        {
+    moveUp() {
+        if (this.currentTrack.id === 0) {
             this.currentTrack = this.scene.tracks[3];
-        }
-        else
-        {
+        } else {
             this.currentTrack = this.scene.tracks[this.currentTrack.id - 1];
         }
 
@@ -52,14 +46,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite
         this.sound.play('move');
     }
 
-    moveDown ()
-    {
-        if (this.currentTrack.id === 3)
-        {
+    moveDown() {
+        if (this.currentTrack.id === 3) {
             this.currentTrack = this.scene.tracks[0];
-        }
-        else
-        {
+        } else {
             this.currentTrack = this.scene.tracks[this.currentTrack.id + 1];
         }
 
@@ -68,8 +58,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite
         this.sound.play('move');
     }
 
-    throw ()
-    {
+    throw() {
         this.isThrowing = true;
 
         this.play('throwStart');
@@ -77,22 +66,19 @@ export default class Player extends Phaser.Physics.Arcade.Sprite
         this.sound.play('throw');
     }
 
-    releaseSnowball ()
-    {
+    releaseSnowball() {
         this.play('throwEnd');
 
         this.currentTrack.throwPlayerSnowball(this.x);
     }
 
-    throwComplete ()
-    {
+    throwComplete() {
         this.isThrowing = false;
 
         this.play('idle');
     }
 
-    stop ()
-    {
+    stop() {
         this.isAlive = false;
 
         this.body.stop();
@@ -100,25 +86,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite
         this.play('die');
     }
 
-    preUpdate (time, delta)
-    {
+    preUpdate(time, delta) {
         super.preUpdate(time, delta);
 
-        if (!this.isAlive)
-        {
+        if (!this.isAlive) {
             return;
         }
 
-        if (Phaser.Input.Keyboard.JustDown(this.up))
-        {
+        if (Phaser.Input.Keyboard.JustDown(this.up)) {
             this.moveUp();
-        }
-        else if (Phaser.Input.Keyboard.JustDown(this.down))
-        {
+        } else if (Phaser.Input.Keyboard.JustDown(this.down)) {
             this.moveDown();
-        }
-        else if (Phaser.Input.Keyboard.JustDown(this.spacebar) && !this.isThrowing)
-        {
+        } else if (Phaser.Input.Keyboard.JustDown(this.spacebar) && !this.isThrowing) {
             this.throw();
         }
     }
