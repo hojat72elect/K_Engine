@@ -2,10 +2,8 @@ import Snowman from './Snowman.js';
 import {PlayerSnowball} from './PlayerSnowball.js';
 import {EnemySnowball} from './EnemySnowball.ts';
 
-export default class Track
-{
-    constructor (scene, id, trackY)
-    {
+export class Track {
+    constructor(scene, id, trackY) {
         this.scene = scene;
         this.id = id;
         this.y = trackY;
@@ -41,8 +39,7 @@ export default class Track
         this.releaseTimerBig;
     }
 
-    start (minDelay, maxDelay)
-    {
+    start(minDelay, maxDelay) {
         const delay = Phaser.Math.Between(minDelay, maxDelay);
 
         this.releaseTimerSmall = this.scene.time.addEvent({
@@ -64,18 +61,15 @@ export default class Track
         });
     }
 
-    stop ()
-    {
+    stop() {
         this.snowmanSmall.stop();
         this.snowmanBig.stop();
 
-        for (let snowball of this.playerSnowballs.getChildren())
-        {
+        for (let snowball of this.playerSnowballs.getChildren()) {
             snowball.stop();
         }
 
-        for (let snowball of this.enemySnowballs.getChildren())
-        {
+        for (let snowball of this.enemySnowballs.getChildren()) {
             snowball.stop();
         }
 
@@ -83,37 +77,30 @@ export default class Track
         this.releaseTimerBig.remove();
     }
 
-    hitSnowball (ball1, ball2)
-    {
+    hitSnowball(ball1, ball2) {
         ball1.stop();
         ball2.stop();
     }
 
-    hitSnowman (snowman, ball)
-    {
-        if (snowman.isAlive && snowman.x > 0)
-        {
+    hitSnowman(snowman, ball) {
+        if (snowman.isAlive && snowman.x > 0) {
             ball.stop();
             snowman.hit();
         }
     }
 
-    throwPlayerSnowball (x)
-    {
+    throwPlayerSnowball(x) {
         let snowball = this.playerSnowballs.getFirstDead(false);
 
-        if (snowball)
-        {
+        if (snowball) {
             snowball.fire(x, this.y);
         }
     }
 
-    throwEnemySnowball (x)
-    {
+    throwEnemySnowball(x) {
         let snowball = this.enemySnowballs.getFirstDead(false);
 
-        if (snowball)
-        {
+        if (snowball) {
             snowball.fire(x, this.y);
         }
     }
