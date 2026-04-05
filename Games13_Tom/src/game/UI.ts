@@ -1,4 +1,13 @@
-export class UI extends Phaser.Scene {
+import {Scene} from 'phaser';
+import Group = Phaser.GameObjects.Group;
+import BitmapText = Phaser.GameObjects.BitmapText;
+
+export class UI extends Scene {
+
+    actual_points: number;
+    groupLife: Group;
+    points: BitmapText;
+
     constructor() {
         super({key: 'UI'});
     }
@@ -27,7 +36,7 @@ export class UI extends Phaser.Scene {
         ).setOrigin(1, 0).setTint(0x000000);
 
 
-        // Eventos
+        // Events
         this.registry.events.on('remove_life', () => {
             this.groupLife.getChildren()[this.groupLife.getChildren().length - 1].destroy();
         });
