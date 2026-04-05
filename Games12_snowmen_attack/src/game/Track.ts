@@ -4,6 +4,7 @@ import {EnemySnowball} from './EnemySnowball.ts';
 import {MainGame} from "./MainGame.ts";
 import ImageWithDynamicBody=Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
 import Group = Phaser.Physics.Arcade.Group;
+import Collider=Phaser.Physics.Arcade.Collider;
 
 export class Track {
 
@@ -15,9 +16,9 @@ export class Track {
     snowmanSmall: Snowman;
     playerSnowballs: Group;
     enemySnowballs: Group;
-    // snowBallCollider: Phaser.Physics.Arcade.Collider;
-    // snowmanSmallCollider: Phaser.Physics.Arcade.Collider;
-    // snowmanBigCollider: Phaser.Physics.Arcade.Collider;
+    snowBallCollider: Collider;
+    snowmanSmallCollider: Collider;
+    snowmanBigCollider: Collider;
     // releaseTimerSmall: Phaser.Time.TimerEvent;
     // releaseTimerBig: Phaser.Time.TimerEvent;
 
@@ -49,9 +50,9 @@ export class Track {
             classType: EnemySnowball
         });
 
-        this.snowBallCollider = scene.physics.add.overlap(this.playerSnowballs, this.enemySnowballs, this.hitSnowball, null, this);
-        this.snowmanSmallCollider = scene.physics.add.overlap(this.snowmanSmall, this.playerSnowballs, this.hitSnowman, null, this);
-        this.snowmanBigCollider = scene.physics.add.overlap(this.snowmanBig, this.playerSnowballs, this.hitSnowman, null, this);
+        this.snowBallCollider = scene.physics.add.overlap(this.playerSnowballs, this.enemySnowballs, this.hitSnowball, undefined, this);
+        this.snowmanSmallCollider = scene.physics.add.overlap(this.snowmanSmall, this.playerSnowballs, this.hitSnowman, undefined, this);
+        this.snowmanBigCollider = scene.physics.add.overlap(this.snowmanBig, this.playerSnowballs, this.hitSnowman, undefined, this);
 
         this.releaseTimerSmall;
         this.releaseTimerBig;
