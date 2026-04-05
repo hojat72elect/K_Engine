@@ -1,7 +1,7 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
 import Key = Phaser.Input.Keyboard.Key;
 import {MainGame} from "./MainGame.ts";
-import {Track} from "./Track";
+import {Track} from "./Track.ts";
 
 export class Player extends Sprite {
 
