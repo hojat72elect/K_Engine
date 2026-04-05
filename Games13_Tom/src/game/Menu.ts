@@ -1,11 +1,22 @@
-export class Menu extends Phaser.Scene {
+import {Scene} from 'phaser';
+import Image = Phaser.GameObjects.Image;
+import BitmapText= Phaser.GameObjects.BitmapText;
+
+export class Menu extends Scene {
+
+    points: number;
+    betsPoints: number;
+    logoMenu:Image;
+    pointsText:BitmapText;
+    bestPointsText:BitmapText;
+
     constructor() {
         super({
             key: 'Menu'
         });
     }
 
-    init(data) {
+    init(data: any) {
         this.points = 0;
 
         if (Object.keys(data).length !== 0) {
@@ -17,7 +28,7 @@ export class Menu extends Phaser.Scene {
     create() {
 
         const pointsDB = localStorage.getItem('best_points');
-        this.betsPoints = (pointsDB !== null) ? pointsDB : 0;
+        this.betsPoints = (pointsDB !== null) ? Number(pointsDB) : 0;
 
         this.add.image(0, 0, 'background').setOrigin(0);
 
@@ -71,7 +82,7 @@ export class Menu extends Phaser.Scene {
         });
 
         if (this.points > this.betsPoints) {
-            localStorage.setItem('best_points', this.points);
+            localStorage.setItem('best_points', String(this.points));
         }
     }
 }
