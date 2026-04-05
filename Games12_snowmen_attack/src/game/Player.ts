@@ -1,14 +1,14 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
+import Key = Phaser.Input.Keyboard.Key;
 import {MainGame} from "./MainGame.ts";
 import Track from "./Track";
-import Key =Phaser.Input.Keyboard.Key;
 
 export class Player extends Sprite {
 
     isAlive = true;
     isThrowing = false;
     currentTrack: Track;
-    sound : Phaser.Sound.NoAudioSoundManager | Phaser.Sound.HTML5AudioSoundManager | Phaser.Sound.WebAudioSoundManager;
+    sound: Phaser.Sound.NoAudioSoundManager | Phaser.Sound.HTML5AudioSoundManager | Phaser.Sound.WebAudioSoundManager;
     spacebar: Key;
     up: Key;
     down: Key;
@@ -34,7 +34,7 @@ export class Player extends Sprite {
         this.isAlive = true;
         this.isThrowing = false;
 
-        this.currentTrack = this.scene.tracks[0];
+        this.currentTrack = (this.scene as MainGame).tracks[0];
         this.y = this.currentTrack.y;
 
         this.on('animationcomplete-throwStart', this.releaseSnowball, this);
@@ -45,9 +45,9 @@ export class Player extends Sprite {
 
     moveUp() {
         if (this.currentTrack.id === 0) {
-            this.currentTrack = this.scene.tracks[3];
+            this.currentTrack = (this.scene as MainGame).tracks[3];
         } else {
-            this.currentTrack = this.scene.tracks[this.currentTrack.id - 1];
+            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id - 1];
         }
 
         this.y = this.currentTrack.y;
@@ -57,9 +57,9 @@ export class Player extends Sprite {
 
     moveDown() {
         if (this.currentTrack.id === 3) {
-            this.currentTrack = this.scene.tracks[0];
+            this.currentTrack = (this.scene as MainGame).tracks[0];
         } else {
-            this.currentTrack = this.scene.tracks[this.currentTrack.id + 1];
+            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id + 1];
         }
 
         this.y = this.currentTrack.y;
@@ -90,12 +90,13 @@ export class Player extends Sprite {
     stop() {
         this.isAlive = false;
 
-        this.body.stop();
+        this.body!.stop();
 
         this.play('die');
+        return this;
     }
 
-    preUpdate(time, delta) {
+    preUpdate(time: number, delta: number) {
         super.preUpdate(time, delta);
 
         if (!this.isAlive) {
