@@ -1,4 +1,4 @@
-import {Tomato} from './Tomato.js';
+import {Tomato} from './Tomato.ts';
 import {Bombs} from './Bombs.ts';
 import {TomatoItem} from './TomatoItem.ts';
 import StaticGroup = Phaser.Physics.Arcade.StaticGroup;
