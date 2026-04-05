@@ -1,6 +1,7 @@
 import {Tomato} from './Tomato.js';
 import {Bombs} from './Bombs.ts';
 import {TomatoItem} from './TomatoItem.ts';
+import StaticGroup = Phaser.Physics.Arcade.StaticGroup;
 
 /**
  * In this fast-paced game, you play as a character on a mission to collect ripe tomatoes while avoiding bombs
@@ -13,6 +14,12 @@ import {TomatoItem} from './TomatoItem.ts';
  * - PixelArt created by @VeryEvilTomato
  */
 export class Play extends Phaser.Scene {
+
+    wall_floor: StaticGroup;
+    bombsGroup: Bombs;
+    itemsGroup: TomatoItem;
+    tomato: Tomato;
+
     constructor() {
         super({key: 'Play'});
     }
@@ -38,7 +45,7 @@ export class Play extends Phaser.Scene {
 
         this.wall_floor.refresh();
 
-        this.wall_floor.getChildren()[2].setOffset(0, 15);
+        (this.wall_floor.getChildren()[2] as any).setOffset(0, 15);
 
         // Bombs
         this.bombsGroup = new Bombs({
@@ -59,6 +66,7 @@ export class Play extends Phaser.Scene {
             y: 100,
         });
 
+        // @ts-ignore
         this.physics.add.collider([this.tomato, this.bombsGroup], this.wall_floor);
         this.physics.add.overlap(this.tomato, this.bombsGroup, () => {
             this.tomato.bombCollision();
