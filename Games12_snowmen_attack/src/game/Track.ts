@@ -1,9 +1,27 @@
 import Snowman from './Snowman.js';
 import {PlayerSnowball} from './PlayerSnowball.js';
 import {EnemySnowball} from './EnemySnowball.ts';
+import {MainGame} from "./MainGame.ts";
+import ImageWithDynamicBody=Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+import Group = Phaser.Physics.Arcade.Group;
 
 export class Track {
-    constructor(scene, id, trackY) {
+
+    scene: MainGame;
+    id: number;
+    y: number;
+    nest: ImageWithDynamicBody;
+    snowmanBig: Snowman;
+    snowmanSmall: Snowman;
+    playerSnowballs: Group;
+    enemySnowballs: Group;
+    // snowBallCollider: Phaser.Physics.Arcade.Collider;
+    // snowmanSmallCollider: Phaser.Physics.Arcade.Collider;
+    // snowmanBigCollider: Phaser.Physics.Arcade.Collider;
+    // releaseTimerSmall: Phaser.Time.TimerEvent;
+    // releaseTimerBig: Phaser.Time.TimerEvent;
+
+    constructor(scene: MainGame, id: number, trackY: number) {
         this.scene = scene;
         this.id = id;
         this.y = trackY;
