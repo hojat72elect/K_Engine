@@ -1,5 +1,15 @@
-export class Tomato extends Phaser.GameObjects.Sprite {
-    constructor(config) {
+import Sprite = Phaser.GameObjects.Sprite;
+import CursorKeys = Phaser.Types.Input.Keyboard.CursorKeys;
+
+export class Tomato extends Sprite {
+
+    jumping = false;
+    prevMov = 'tomato_idle';
+    hitDelay = false;
+    life = 3;
+    cursor: CursorKeys;
+
+    constructor(config: any) {
         super(config.scene, config.x, config.y, 'tomato');
 
         this.scene = config.scene;
@@ -7,33 +17,24 @@ export class Tomato extends Phaser.GameObjects.Sprite {
         this.scene.physics.world.enable(this);
 
         this.setScale(2);
-        this.body.setSize(14, 20);
-        this.body.setOffset(2, 5);
-        this.body.setBounce(0.2);
-
-        this.jumping = false;
+        (this.body as any).setSize(14, 20);
+        (this.body as any).setOffset(2, 5);
+        (this.body as any).setBounce(0.2);
 
         this.anims.play('tomato_idle');
-        this.prevMov = 'tomato_idle';
-
-        this.hitDelay = false;
-
-        this.cursor = this.scene.input.keyboard.createCursorKeys();
-
-        this.life = 3;
-
+        this.cursor = this.scene.input.keyboard!.createCursorKeys();
     }
 
     update() {
         if (this.cursor.left.isDown) {
-            this.body.setVelocityX(-200);
+            (this.body as any).setVelocityX(-200);
             this.flipX = true;
             if (this.prevMov !== 'left' && !this.jumping) {
                 this.prevMov = 'left';
                 this.anims.play('tomato_walk');
             }
         } else if (this.cursor.right.isDown) {
-            this.body.setVelocityX(200);
+            (this.body as any).setVelocityX(200);
             this.flipX = false;
             if (this.prevMov !== 'right' && !this.jumping) {
                 this.prevMov = 'right';
@@ -41,9 +42,9 @@ export class Tomato extends Phaser.GameObjects.Sprite {
             }
 
         } else if (this.cursor.down.isDown && !this.jumping) {
-            this.body.setVelocityX(0);
-            this.body.setSize(14, 15);
-            this.body.setOffset(2, 10);
+            (this.body as any).setVelocityX(0);
+            (this.body as any).setSize(14, 15);
+            (this.body as any).setOffset(2, 10);
 
             if (this.prevMov !== 'down' && !this.jumping) {
                 this.prevMov = 'down';
@@ -51,9 +52,9 @@ export class Tomato extends Phaser.GameObjects.Sprite {
             }
 
         } else {
-            this.body.setVelocityX(0);
-            this.body.setSize(14, 20);
-            this.body.setOffset(2, 5);
+            (this.body as any).setVelocityX(0);
+            (this.body as any).setSize(14, 20);
+            (this.body as any).setOffset(2, 5);
             if (this.prevMov !== 'tomato_idle' && !this.jumping) {
                 this.prevMov = 'tomato_idle';
                 this.anims.play('tomato_idle');
@@ -62,12 +63,12 @@ export class Tomato extends Phaser.GameObjects.Sprite {
 
         if (Phaser.Input.Keyboard.JustDown(this.cursor.up) && !this.jumping) {
             this.jumping = true;
-            this.body.setVelocityY(-800);
+            (this.body as any).setVelocityY(-800);
             if (this.prevMov !== 'jump') {
                 this.prevMov = 'jump';
                 this.anims.play('tomato_jump');
             }
-        } else if (this.body.blocked.down) {
+        } else if ((this.body as any).blocked.down) {
             this.jumping = false;
         }
     }
