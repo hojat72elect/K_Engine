@@ -18,7 +18,7 @@ export class Preloader extends Scene {
         this.load.setPath('assets/');
         this.load.image(['background', 'overlay', 'gameover', 'title'] as any[]);
         this.load.atlas('sprites', 'sprites.png', 'sprites.json');
-        this.load.glsl('snow', 'snow.glsl.js');
+        this.load.glsl('snow', 'snow.glsl');
 
         //  Audio ...
         this.load.setPath('assets/sounds/');
