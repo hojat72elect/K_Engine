@@ -1,6 +1,6 @@
 import {AUTO, Game, Scale, Types} from 'phaser';
 import {Preloader} from "./Preloader";
-import {UI} from "./UI";
+import {UI} from "./UI.ts";
 import {Play} from "./Play";
 import {Menu} from "./Menu";
 
