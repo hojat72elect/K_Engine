@@ -2,9 +2,10 @@ import Snowman from './Snowman.js';
 import {PlayerSnowball} from './PlayerSnowball.js';
 import {EnemySnowball} from './EnemySnowball.ts';
 import {MainGame} from "./MainGame.ts";
-import ImageWithDynamicBody=Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
+import ImageWithDynamicBody = Phaser.Types.Physics.Arcade.ImageWithDynamicBody;
 import Group = Phaser.Physics.Arcade.Group;
-import Collider=Phaser.Physics.Arcade.Collider;
+import Collider = Phaser.Physics.Arcade.Collider;
+import TimerEvent = Phaser.Time.TimerEvent;
 
 export class Track {
 
@@ -19,8 +20,8 @@ export class Track {
     snowBallCollider: Collider;
     snowmanSmallCollider: Collider;
     snowmanBigCollider: Collider;
-    // releaseTimerSmall: Phaser.Time.TimerEvent;
-    // releaseTimerBig: Phaser.Time.TimerEvent;
+    releaseTimerSmall: TimerEvent;
+    releaseTimerBig: TimerEvent;
 
     constructor(scene: MainGame, id: number, trackY: number) {
         this.scene = scene;
@@ -53,12 +54,9 @@ export class Track {
         this.snowBallCollider = scene.physics.add.overlap(this.playerSnowballs, this.enemySnowballs, this.hitSnowball, undefined, this);
         this.snowmanSmallCollider = scene.physics.add.overlap(this.snowmanSmall, this.playerSnowballs, this.hitSnowman, undefined, this);
         this.snowmanBigCollider = scene.physics.add.overlap(this.snowmanBig, this.playerSnowballs, this.hitSnowman, undefined, this);
-
-        this.releaseTimerSmall;
-        this.releaseTimerBig;
     }
 
-    start(minDelay, maxDelay) {
+    start(minDelay: number, maxDelay: number) {
         const delay = Phaser.Math.Between(minDelay, maxDelay);
 
         this.releaseTimerSmall = this.scene.time.addEvent({
@@ -85,30 +83,30 @@ export class Track {
         this.snowmanBig.stop();
 
         for (let snowball of this.playerSnowballs.getChildren()) {
-            snowball.stop();
+            (snowball as PlayerSnowball).stop();
         }
 
         for (let snowball of this.enemySnowballs.getChildren()) {
-            snowball.stop();
+            (snowball as EnemySnowball).stop();
         }
 
         this.releaseTimerSmall.remove();
         this.releaseTimerBig.remove();
     }
 
-    hitSnowball(ball1, ball2) {
+    hitSnowball(ball1: any, ball2: any) {
         ball1.stop();
         ball2.stop();
     }
 
-    hitSnowman(snowman, ball) {
+    hitSnowman(snowman: any, ball: any) {
         if (snowman.isAlive && snowman.x > 0) {
             ball.stop();
             snowman.hit();
         }
     }
 
-    throwPlayerSnowball(x) {
+    throwPlayerSnowball(x: any) {
         let snowball = this.playerSnowballs.getFirstDead(false);
 
         if (snowball) {
@@ -116,7 +114,7 @@ export class Track {
         }
     }
 
-    throwEnemySnowball(x) {
+    throwEnemySnowball(x: any) {
         let snowball = this.enemySnowballs.getFirstDead(false);
 
         if (snowball) {
