@@ -1,7 +1,5 @@
-export default class Snowman extends Phaser.Physics.Arcade.Sprite
-{
-    constructor (scene, track, size)
-    {
+export class Snowman extends Phaser.Physics.Arcade.Sprite {
+    constructor(scene, track, size) {
         const frame = (size === 'Small') ? 'snowman-small-idle0' : 'snowman-big-idle0';
         const x = (size === 'Small') ? 80 : -100;
 
@@ -12,13 +10,10 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
-        if (size === 'Small')
-        {
+        if (size === 'Small') {
             this.body.setSize(100, 100);
             this.body.setOffset(20, 40);
-        }
-        else
-        {
+        } else {
             this.body.setSize(100, 120);
             this.body.setOffset(50, 50);
         }
@@ -40,15 +35,14 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.play('snowmanIdle' + this.size);
     }
 
-    start ()
-    {
+    start() {
         this.isAlive = true;
         this.isThrowing = false;
         this.previousAction = 0;
         this.currentHitpoints = this.maxHitpoints;
 
         this.y = this.currentTrack.y;
-    
+
         this.on('animationcomplete-snowmanThrowStart' + this.size, this.releaseSnowball, this);
         this.on('animationcomplete-snowmanThrowEnd' + this.size, this.throwComplete, this);
 
@@ -62,8 +56,7 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.chooseEvent = this.time.delayedCall(Phaser.Math.Between(3000, 6000), this.chooseAction, [], this);
     }
 
-    chooseAction ()
-    {
+    chooseAction() {
         //  In case it was disabled by a hit
         this.isAlive = true;
         this.body.enable = true;
@@ -75,45 +68,30 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         //  61 - 100 = Walk 
         const t = Phaser.Math.Between(0, 100);
 
-        if (t < 50)
-        {
+        if (t < 50) {
             //  If it threw last time, we don't throw again
-            if (this.previousAction === 2)
-            {
+            if (this.previousAction === 2) {
                 this.walk();
-            }
-            else
-            {
+            } else {
                 this.throw();
             }
-        }
-        else if (t > 60)
-        {
+        } else if (t > 60) {
             this.walk();
-        }
-        else
-        {
+        } else {
             //  If it was idle last time, we don't go idle again
-            if (this.previousAction === 1)
-            {
-                if (t > 55)
-                {
+            if (this.previousAction === 1) {
+                if (t > 55) {
                     this.walk();
-                }
-                else
-                {
+                } else {
                     this.throw();
                 }
-            }
-            else
-            {
+            } else {
                 this.goIdle();
             }
         }
     }
 
-    walk ()
-    {
+    walk() {
         this.previousAction = 0;
 
         this.play('snowmanWalk' + this.size, true);
@@ -123,8 +101,7 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.chooseEvent = this.time.delayedCall(Phaser.Math.Between(3000, 6000), this.chooseAction, [], this);
     }
 
-    goIdle ()
-    {
+    goIdle() {
         this.previousAction = 1;
 
         this.play('snowmanIdle' + this.size, true);
@@ -132,8 +109,7 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.chooseEvent = this.time.delayedCall(Phaser.Math.Between(2000, 4000), this.chooseAction, [], this);
     }
 
-    throw ()
-    {
+    throw() {
         this.previousAction = 2;
 
         this.isThrowing = true;
@@ -141,10 +117,8 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.play('snowmanThrowStart' + this.size);
     }
 
-    releaseSnowball ()
-    {
-        if (!this.isAlive)
-        {
+    releaseSnowball() {
+        if (!this.isAlive) {
             return;
         }
 
@@ -153,10 +127,8 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.currentTrack.throwEnemySnowball(this.x);
     }
 
-    throwComplete ()
-    {
-        if (!this.isAlive)
-        {
+    throwComplete() {
+        if (!this.isAlive) {
             return;
         }
 
@@ -167,10 +139,8 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.chooseEvent = this.time.delayedCall(Phaser.Math.Between(2000, 4000), this.chooseAction, [], this);
     }
 
-    hit ()
-    {
-        if (this.chooseEvent)
-        {
+    hit() {
+        if (this.chooseEvent) {
             this.chooseEvent.remove();
         }
 
@@ -193,8 +163,7 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
             ease: 'sine.out',
             duration: 1000,
             onComplete: () => {
-                if (this.x < -100)
-                {
+                if (this.x < -100) {
                     this.x = -100;
                 }
             }
@@ -203,10 +172,8 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.chooseEvent = this.time.delayedCall(Phaser.Math.Between(1000, 3000), this.chooseAction, [], this);
     }
 
-    stop ()
-    {
-        if (this.chooseEvent)
-        {
+    stop() {
+        if (this.chooseEvent) {
             this.chooseEvent.remove();
         }
 
@@ -217,12 +184,10 @@ export default class Snowman extends Phaser.Physics.Arcade.Sprite
         this.setVelocityX(0);
     }
 
-    preUpdate (time, delta)
-    {
+    preUpdate(time, delta) {
         super.preUpdate(time, delta);
 
-        if (this.x >= 880)
-        {
+        if (this.x >= 880) {
             this.stop();
 
             this.scene.gameOver();
