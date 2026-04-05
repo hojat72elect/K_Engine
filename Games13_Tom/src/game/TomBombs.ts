@@ -1,5 +1,8 @@
-export class Bombs extends Phaser.Physics.Arcade.Group {
-    constructor(config) {
+import Group = Phaser.Physics.Arcade.Group;
+
+export class Bombs extends Group {
+
+    constructor(config: any) {
         super(config.physicsWorld, config.scene);
         this.addBomb();
     }
