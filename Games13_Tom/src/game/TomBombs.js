@@ -1,4 +1,4 @@
-class Bombs extends Phaser.Physics.Arcade.Group {
+export class Bombs extends Phaser.Physics.Arcade.Group {
     constructor(config) {
         super(config.physicsWorld, config.scene);
         this.addBomb();
@@ -18,8 +18,8 @@ class Bombs extends Phaser.Physics.Arcade.Group {
     }
 
     update() {
-        this.children.iterate( bomb => {
-            if(bomb.body.velocity.x < 0) {
+        this.children.iterate(bomb => {
+            if (bomb.body.velocity.x < 0) {
                 bomb.setAngularVelocity(-300);
             } else {
                 bomb.setAngularVelocity(300);
@@ -27,5 +27,3 @@ class Bombs extends Phaser.Physics.Arcade.Group {
         });
     }
 }
-
-export default Bombs;
