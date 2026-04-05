@@ -1,8 +1,12 @@
-export class Preloader extends Phaser.Scene {
+import {Scene} from 'phaser';
+import Text = Phaser.GameObjects.Text;
+
+export class Preloader extends Scene {
+
+    loadText: Text;
+
     constructor() {
         super('Preloader');
-
-        this.loadText;
     }
 
     preload() {
@@ -12,7 +16,7 @@ export class Preloader extends Phaser.Scene {
         this.loadText.setShadow(2, 2, '#2d2d2d', 4, true, false);
 
         this.load.setPath('assets/');
-        this.load.image(['background', 'overlay', 'gameover', 'title']);
+        this.load.image(['background', 'overlay', 'gameover', 'title'] as any[]);
         this.load.atlas('sprites', 'sprites.png', 'sprites.json');
         this.load.glsl('snow', 'snow.glsl.js');
 
