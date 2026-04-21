@@ -1,28 +1,22 @@
 import {Game} from "phaser";
+import {Preloader} from "./Preloader.js";
+import {Play} from "./Play.js";
 
 const config = {
+    title: "Card memory game",
     type: Phaser.AUTO,
+    backgroundColor: "#192a56",
+    width: 549,
+    height: 480,
     parent: "phaser-container",
-    width: 960,
-    height: 540,
-    backgroundColor: "#1c172e",
-    pixelArt: true,
-    roundPixel: false,
-    max: {
-        width: 800,
-        height: 600,
+    render: {
+        pixelArt: true
     },
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
-    physics: {
-        default: "arcade",
-        arcade: {
-            gravity: {y: 0}
-        }
-    },
-    scene: []
+    scene: [Preloader, Play]
 };
 
 new Game(config);
