@@ -1,16 +1,13 @@
 import * as Phaser from 'phaser';
 
-export class Preloader extends Phaser.Scene
-{
-    constructor()
-    {
+export class Preloader extends Phaser.Scene {
+    constructor() {
         super({
             key: 'Preloader'
         });
     }
 
-    preload ()
-    {
+    preload() {
         this.load.setPath("assets/");
 
         this.load.image("volume-icon", "ui/volume-icon.png");
@@ -36,8 +33,7 @@ export class Preloader extends Phaser.Scene
 
     }
 
-    create ()
-    {
+    create() {
         this.scene.start("Play");
     }
 }

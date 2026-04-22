@@ -1,4 +1,4 @@
-import { createCard } from './createCard';
+import {createCard} from './createCard';
 import * as Phaser from 'phaser';
 
 /**
@@ -13,8 +13,7 @@ import * as Phaser from 'phaser';
  * "Fat Caps" by Audionautix is licensed under the Creative Commons Attribution 4.0 license. https://creativecommons.org/licenses/by/4.0/
  * Artist http://audionautix.com/
  */
-export class Play extends Phaser.Scene
-{
+export class Play extends Phaser.Scene {
     // All cards names
     cardNames = ["card-0", "card-1", "card-2", "card-3", "card-4", "card-5"];
     // Cards Game Objects
@@ -37,29 +36,26 @@ export class Play extends Phaser.Scene
         paddingY: 10
     }
 
-    constructor ()
-    {
+    constructor() {
         super({
             key: 'Play'
         });
     }
 
-    init ()
-    {
+    init() {
         // Fadein camera
         this.cameras.main.fadeIn(500);
         this.lives = 10;
         this.volumeButton();
     }
 
-    create ()
-    {
+    create() {
         // Background image
         this.add.image(this.gridConfiguration.x - 63, this.gridConfiguration.y - 77, "background").setOrigin(0);
 
         const titleText = this.add.text(this.sys.game.scale.width / 2, this.sys.game.scale.height / 2,
             "Memory Card Game\nClick to Play",
-            { align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#8c7ae6" }
+            {align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#8c7ae6"}
         )
             .setOrigin(.5)
             .setDepth(3)
@@ -84,14 +80,14 @@ export class Play extends Phaser.Scene
             this.input.setDefaultCursor("default");
         });
         titleText.on(Phaser.Input.Events.POINTER_DOWN, () => {
-            this.sound.play("whoosh", { volume: 1.3 });
+            this.sound.play("whoosh", {volume: 1.3});
             this.add.tween({
                 targets: titleText,
                 ease: Phaser.Math.Easing.Bounce.InOut,
                 y: -1000,
                 onComplete: () => {
                     if (!this.sound.get("theme-song")) {
-                        this.sound.play("theme-song", { loop: true, volume: .5 });
+                        this.sound.play("theme-song", {loop: true, volume: .5});
                     }
                     this.startGame();
                 }
@@ -99,8 +95,7 @@ export class Play extends Phaser.Scene
         });
     }
 
-    restartGame ()
-    {
+    restartGame() {
         this.cardOpened = undefined;
         this.cameras.main.fadeOut(200 * this.cards.length);
         this.cards.reverse().map((card, index) => {
@@ -121,13 +116,12 @@ export class Play extends Phaser.Scene
                 this.cards = [];
                 this.canMove = false;
                 this.scene.restart();
-                this.sound.play("card-slide", { volume: 1.2 });
+                this.sound.play("card-slide", {volume: 1.2});
             }
         })
     }
 
-    createGridCards ()
-    {
+    createGridCards() {
         // Phaser random array position
         const gridCardNames = Phaser.Utils.Array.Shuffle([...this.cardNames, ...this.cardNames]);
 
@@ -143,15 +137,14 @@ export class Play extends Phaser.Scene
                 targets: newCard.gameObject,
                 duration: 800,
                 delay: index * 100,
-                onStart: () => this.sound.play("card-slide", { volume: 1.2 }),
+                onStart: () => this.sound.play("card-slide", {volume: 1.2}),
                 y: this.gridConfiguration.y + (128 + this.gridConfiguration.paddingY) * Math.floor(index / 4)
             })
             return newCard;
         });
     }
 
-    createHearts ()
-    {
+    createHearts() {
         return Array.from(new Array(this.lives)).map((el, index) => {
             const heart = this.add.image(this.sys.game.scale.width + 1000, 20, "heart")
                 .setScale(2)
@@ -168,8 +161,7 @@ export class Play extends Phaser.Scene
     }
 
 
-    volumeButton ()
-    {
+    volumeButton() {
         const volumeIcon = this.add.image(25, 25, "volume-icon").setName("volume-icon");
         volumeIcon.setInteractive();
 
@@ -197,19 +189,18 @@ export class Play extends Phaser.Scene
         });
     }
 
-    startGame ()
-    {
+    startGame() {
 
         // WinnerText and GameOverText
         const winnerText = this.add.text(this.sys.game.scale.width / 2, -1000, "YOU WIN",
-            { align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#8c7ae6" }
+            {align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#8c7ae6"}
         ).setOrigin(.5)
             .setDepth(3)
             .setInteractive();
 
         const gameOverText = this.add.text(this.sys.game.scale.width / 2, -1000,
             "GAME OVER\nClick to restart",
-            { align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#ff0000" }
+            {align: "center", strokeThickness: 4, fontSize: 40, fontStyle: "bold", color: "#ff0000"}
         )
             .setName("gameOverText")
             .setDepth(3)
@@ -237,8 +228,8 @@ export class Play extends Phaser.Scene
                 if (card) {
                     this.input.setDefaultCursor("pointer");
                 } else {
-                    if(go[0]) {
-                        if(go[0].name !== "volume-icon") {
+                    if (go[0]) {
+                        if (go[0].name !== "volume-icon") {
                             this.input.setDefaultCursor("pointer");
                         }
                     } else {
@@ -286,7 +277,7 @@ export class Play extends Phaser.Scene
                                     targets: lastHeart,
                                     ease: Phaser.Math.Easing.Expo.InOut,
                                     duration: 1000,
-                                    y: - 1000,
+                                    y: -1000,
                                     onComplete: () => {
                                         lastHeart.destroy();
                                         hearts.pop();
@@ -305,7 +296,7 @@ export class Play extends Phaser.Scene
                             // Check if the game is over
                             if (this.lives === 0) {
                                 // Show Game Over text
-                                this.sound.play("whoosh", { volume: 1.3 });
+                                this.sound.play("whoosh", {volume: 1.3});
                                 this.add.tween({
                                     targets: gameOverText,
                                     ease: Phaser.Math.Easing.Bounce.Out,
@@ -317,7 +308,7 @@ export class Play extends Phaser.Scene
 
                             // Check if the game is won
                             if (this.cards.length === 0) {
-                                this.sound.play("whoosh", { volume: 1.3 });
+                                this.sound.play("whoosh", {volume: 1.3});
                                 this.sound.play("victory");
 
                                 this.add.tween({
@@ -352,7 +343,7 @@ export class Play extends Phaser.Scene
             this.input.setDefaultCursor("default");
         });
         winnerText.on(Phaser.Input.Events.POINTER_DOWN, () => {
-            this.sound.play("whoosh", { volume: 1.3 });
+            this.sound.play("whoosh", {volume: 1.3});
             this.add.tween({
                 targets: winnerText,
                 ease: Phaser.Math.Easing.Bounce.InOut,
