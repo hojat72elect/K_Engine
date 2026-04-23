@@ -308,7 +308,7 @@ export class Play extends Phaser.Scene {
                             }
                         });
 
-                    } else if (this.cardOpened === undefined && this.lives > 0 && this.cards.length > 0) {
+                    } else if (this.lives > 0 && this.cards.length > 0) {
                         // If there is not a card opened save the card selected
                         card.flip(() => {
                             this.canMove = true;
