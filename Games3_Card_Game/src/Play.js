@@ -1,17 +1,10 @@
 import {createCard} from './createCard.ts';
-import * as Phaser from 'phaser';
+import * as Phaser from 'phaser'; // Warning!! Don't change this line, your math library will act weirdly.
 
 /**
- * Card Memory Game by Francisco Pereira (Gammafp)
- * -----------------------------------------------
- *
  * Test your memory skills in this classic game of matching pairs.
  * Flip over cards to reveal pictures, and try to remember where each image is located.
  * Match all the pairs to win!
- *
- * Music credits:
- * "Fat Caps" by Audionautix is licensed under the Creative Commons Attribution 4.0 license. https://creativecommons.org/licenses/by/4.0/
- * Artist http://audionautix.com/
  */
 export class Play extends Phaser.Scene {
     // All cards names
@@ -126,13 +119,8 @@ export class Play extends Phaser.Scene {
         const gridCardNames = Phaser.Utils.Array.Shuffle([...this.cardNames, ...this.cardNames]);
 
         return gridCardNames.map((name, index) => {
-            const newCard = createCard({
-                scene: this,
-                x: this.gridConfiguration.x + (98 + this.gridConfiguration.paddingX) * (index % 4),
-                y: -1000,
-                frontTexture: name,
-                cardName: name
-            });
+            const newCard = createCard(this, this.gridConfiguration.x + (98 + this.gridConfiguration.paddingX) * (index % 4), -1000, name, name);
+
             this.add.tween({
                 targets: newCard.gameObject,
                 duration: 800,

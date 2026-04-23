@@ -1,10 +1,10 @@
-import * as Phaser from 'phaser';
+import * as Phaser from 'phaser'; // Warning!! Don't change this line, your math library will act weirdly.
 
 /**
  * Create a card game object
  */
-export const createCard = ({scene, x, y, frontTexture, cardName}:
-                           { scene: any; x: any; y: any; frontTexture: any; cardName: any }) => {
+export function createCard  (
+                            scene: any, x: any, y: any, frontTexture: any, cardName: any ) {
 
     let isFlipping = false;
     const rotation = {y: 0};
@@ -18,7 +18,7 @@ export const createCard = ({scene, x, y, frontTexture, cardName}:
     // start with the card face down
     card.modelRotationY = 180;
 
-    const flipCard = (callbackComplete:any) => {
+    const flipCard = (callbackComplete: any) => {
         if (isFlipping) {
             return;
         }
