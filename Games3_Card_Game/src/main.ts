@@ -1,4 +1,4 @@
-import {Preloader} from './Preloader';
+import {Preloader} from './Preloader.ts';
 import {Play} from './Play';
 import {AUTO, Game, Scale} from 'phaser';
 
