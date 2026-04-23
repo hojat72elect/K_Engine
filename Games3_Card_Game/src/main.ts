@@ -1,18 +1,18 @@
 import {Preloader} from './Preloader';
 import {Play} from './Play';
-import * as Phaser from 'phaser';
+import {AUTO, Game, Scale} from 'phaser';
 
 const config = {
     title: 'Card Memory Game',
-    type: Phaser.AUTO,
+    type: AUTO,
     width: 549,
     height: 480,
     parent: 'game-container',
     backgroundColor: '#192a56',
     pixelArt: true,
     scale: {
-        mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.CENTER_BOTH
+        mode: Scale.FIT,
+        autoCenter: Scale.CENTER_BOTH
     },
     scene: [
         Preloader,
@@ -20,4 +20,4 @@ const config = {
     ]
 };
 
-new Phaser.Game(config);
+new Game(config);
