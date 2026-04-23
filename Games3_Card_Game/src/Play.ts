@@ -1,3 +1,4 @@
+//@ts-check
 import {createCard} from './createCard.ts';
 import * as Phaser from 'phaser'; // Warning!! Don't change this line, your math library will act weirdly.
 
@@ -10,10 +11,10 @@ export class Play extends Phaser.Scene {
     // All cards names
     cardNames = ["card-0", "card-1", "card-2", "card-3", "card-4", "card-5"];
     // Cards Game Objects
-    cards = [];
+    cards: any[] = [];
 
     // History of card opened
-    cardOpened = undefined;
+    cardOpened: any = undefined;
 
     // Can play the game
     canMove = false;
@@ -57,7 +58,7 @@ export class Play extends Phaser.Scene {
         this.add.tween({
             targets: titleText,
             duration: 800,
-            ease: (value) => (value > .8),
+            ease: (value: number) => (value > .8),
             alpha: 0,
             repeat: -1,
             yoyo: true,
@@ -91,7 +92,7 @@ export class Play extends Phaser.Scene {
     restartGame() {
         this.cardOpened = undefined;
         this.cameras.main.fadeOut(200 * this.cards.length);
-        this.cards.reverse().map((card, index) => {
+        this.cards.reverse().map((card: any, index: number) => {
             this.add.tween({
                 targets: card.gameObject,
                 duration: 500,
@@ -133,7 +134,7 @@ export class Play extends Phaser.Scene {
     }
 
     createHearts() {
-        return Array.from(new Array(this.lives)).map((el, index) => {
+        return Array.from(new Array(this.lives)).map((_: any, index) => {
             const heart = this.add.image(this.sys.game.scale.width + 1000, 20, "heart")
                 .setScale(2)
 
@@ -210,13 +211,15 @@ export class Play extends Phaser.Scene {
         });
 
         // Game Logic
-        this.input.on(Phaser.Input.Events.POINTER_MOVE, (pointer) => {
+        this.input.on(Phaser.Input.Events.POINTER_MOVE, (pointer: any) => {
             if (this.canMove) {
                 const card = this.cards.find(card => card.gameObject.hasFaceAt(pointer.x, pointer.y));
                 if (card) {
                     this.input.setDefaultCursor("pointer");
                 } else {
+                    //@ts-ignore
                     if (go[0]) {
+                        //@ts-ignore
                         if (go[0].name !== "volume-icon") {
                             this.input.setDefaultCursor("pointer");
                         }
@@ -226,7 +229,7 @@ export class Play extends Phaser.Scene {
                 }
             }
         });
-        this.input.on(Phaser.Input.Events.POINTER_DOWN, (pointer) => {
+        this.input.on(Phaser.Input.Events.POINTER_DOWN, (pointer: any) => {
             if (this.canMove && this.cards.length) {
                 const card = this.cards.find(card => card.gameObject.hasFaceAt(pointer.x, pointer.y));
 
