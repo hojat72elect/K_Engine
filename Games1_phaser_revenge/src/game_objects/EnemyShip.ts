@@ -5,13 +5,17 @@ import Sprite = Phaser.Physics.Arcade.Sprite;
 import Tween = Phaser.Tweens.Tween;
 import Group = Phaser.Physics.Arcade.Group;
 
-export class BlueEnemy extends Sprite {
+/**
+ * This is the enemy which keeps going up and down. And also when hit by the player, 
+ * will shoot a red bullet.
+ */
+export class EnemyShip extends Sprite {
+    
     scene!: Scene;
     animation_is_playing = false;
     damage_life_point = 3;
     scale_damage = 4;
     up_down_tween!: Tween;
-
     bullets!: Group;
 
     constructor(scene: Scene) {
@@ -32,7 +36,7 @@ export class BlueEnemy extends Sprite {
         });
         this.up_down_tween.pause();
 
-        // Bullets group (these are the enemy bullets)
+        // Bullets group (these are the enemy's bullets)
         this.bullets = this.scene.physics.add.group({
             classType: Bullet,
             maxSize: 100,
@@ -54,10 +58,10 @@ export class BlueEnemy extends Sprite {
         });
     }
 
-    damage(player_x: number, player_y: number) {
+    damage(playerX: number, playerY: number) {
         const bullet: Bullet = this.bullets.get();
         if (bullet) {
-            bullet.fire(this.x, this.y, player_x, player_y, "enemy-bullet");
+            bullet.fire(this.x, this.y, playerX, playerY, "enemy-bullet");
         }
 
         this.anims.play("hit");

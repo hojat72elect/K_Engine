@@ -1,12 +1,12 @@
 import {Scene} from "phaser";
 import {Player} from "../game_objects/Player.js";
-import {BlueEnemy} from "../game_objects/BlueEnemy.js";
+import {EnemyShip} from "../game_objects/EnemyShip.js";
 import type {Bullet} from "../game_objects/Bullet.js";
 import type {HudScene} from "./HudScene.js";
 
 export class MainScene extends Scene {
     player!: Player;
-    enemy_blue!: BlueEnemy;
+    enemy_blue!: EnemyShip;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     points: number = 0;
     game_over_timeout: number = 20;
@@ -32,7 +32,7 @@ export class MainScene extends Scene {
         this.player = new Player({scene: this});
 
         // Enemy
-        this.enemy_blue = new BlueEnemy(this);
+        this.enemy_blue = new EnemyShip(this);
 
         // Cursor keys 
         this.cursors = this.input.keyboard!.createCursorKeys();
@@ -46,7 +46,7 @@ export class MainScene extends Scene {
         // Overlap enemy with bullets
         this.physics.add.overlap(this.player.bullets as any, this.enemy_blue as any, (enemy: any, bullet: any) => {
             (<Bullet>bullet).destroyBullet();
-            (<BlueEnemy>enemy).damage(this.player.x, this.player.y);
+            (<EnemyShip>enemy).damage(this.player.x, this.player.y);
             this.points += 10;
             (this.scene.get("HudScene") as HudScene).update_points(this.points);
         });
