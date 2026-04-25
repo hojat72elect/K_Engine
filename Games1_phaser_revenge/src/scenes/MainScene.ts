@@ -1,7 +1,7 @@
 import {Scene} from "phaser";
-import {Player} from "../gameobjects/Player.js";
-import {BlueEnemy} from "../gameobjects/BlueEnemy.js";
-import type {Bullet} from "../gameobjects/Bullet.js";
+import {Player} from "../game_objects/Player.js";
+import {BlueEnemy} from "../game_objects/BlueEnemy.js";
+import type {Bullet} from "../game_objects/Bullet.js";
 import type {HudScene} from "./HudScene.js";
 
 export class MainScene extends Scene {
