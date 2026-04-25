@@ -5,6 +5,7 @@
   "scripts": {
     "game1": "vite --open game1_phaser_revenge.html",
     "game2": "vite --open game2_coin_clicker.html",
+    "game3": "vite --open game3_card_game.html",
     "build": "vite build",
     "preview": "vite preview"
   },
