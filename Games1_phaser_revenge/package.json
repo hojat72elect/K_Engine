@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "game1": "vite --open game1_phaser_revenge.html",
+    "dev2": "vite --open index2.html",
     "build": "vite build",
     "preview": "vite preview"
   },
