@@ -8,7 +8,7 @@ export class Preloader extends Phaser.Scene {
 
     preload() {
         // Load all the assets
-        this.load.setPath("assets");
+        this.load.setPath("assets/game1_phaser_revenge");
         this.load.image("logo", "logo.png");
         this.load.image("floor");
         this.load.image("background", "background.png");
