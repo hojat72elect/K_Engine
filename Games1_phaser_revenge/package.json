@@ -9,6 +9,7 @@
     "game4": "vite --open game4_avoid_the_germs.html",
     "game5": "vite --open game5_breakout.html",
     "game6": "vite --open game6_emoji_match.html",
+    "game7": "vite --open game7_phaser_platformer.html",
     "build": "vite build",
     "preview": "vite preview"
   },
