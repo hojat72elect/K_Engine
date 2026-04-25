@@ -6,6 +6,7 @@
     "game1": "vite --open game1_phaser_revenge.html",
     "game2": "vite --open game2_coin_clicker.html",
     "game3": "vite --open game3_card_game.html",
+    "game4": "vite --open game4_avoid_the_germs.html",
     "build": "vite build",
     "preview": "vite preview"
   },
