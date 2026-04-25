@@ -8,6 +8,7 @@
     "game3": "vite --open game3_card_game.html",
     "game4": "vite --open game4_avoid_the_germs.html",
     "game5": "vite --open game5_breakout.html",
+    "game6": "vite --open game6_emoji_match.html",
     "build": "vite build",
     "preview": "vite preview"
   },
