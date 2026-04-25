@@ -10,6 +10,7 @@
     "game5": "vite --open game5_breakout.html",
     "game6": "vite --open game6_emoji_match.html",
     "game7": "vite --open game7_phaser_platformer.html",
+    "game8": "vite --open game8_flood_fill.html",
     "build": "vite build",
     "preview": "vite preview"
   },
