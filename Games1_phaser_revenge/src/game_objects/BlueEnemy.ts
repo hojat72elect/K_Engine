@@ -1,15 +1,18 @@
 import type {Scene} from "phaser";
-import {Math, Physics} from "phaser";
+import {Math} from "phaser";
 import {Bullet} from "./Bullet.js";
+import Sprite = Phaser.Physics.Arcade.Sprite;
+import Tween = Phaser.Tweens.Tween;
+import Group = Phaser.Physics.Arcade.Group;
 
-export class BlueEnemy extends Physics.Arcade.Sprite {
+export class BlueEnemy extends Sprite {
     scene!: Scene;
     animation_is_playing = false;
     damage_life_point = 3;
     scale_damage = 4;
-    up_down_tween!: Phaser.Tweens.Tween;
+    up_down_tween!: Tween;
 
-    bullets!: Phaser.Physics.Arcade.Group;
+    bullets!: Group;
 
     constructor(scene: Scene) {
         super(scene, scene.scale.width + 150, scene.scale.height - 100, "enemy-blue");
