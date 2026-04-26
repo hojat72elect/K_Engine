@@ -1,6 +1,6 @@
 import {Scene} from 'phaser';
-import {WipePostFX} from "./WipePostFX.ts";
-import {ShinePostFX} from "./ShinePostFX.ts";
+import {WipePostFX} from "./WipePostFX";
+import {ShinePostFX} from "./ShinePostFX";
 import WebGLRenderer = Phaser.Renderer.WebGL.WebGLRenderer;
 
 export class MainMenu extends Scene {

@@ -1,7 +1,7 @@
 import {Scene} from 'phaser';
+import {WipePostFX} from "./WipePostFX";
 import Container = Phaser.GameObjects.Container;
 import Image = Phaser.GameObjects.Image;
-import {WipePostFX} from "./WipePostFX.ts";
 
 const SlidingPuzzle = {
     ALLOW_CLICK: 0,
@@ -175,7 +175,7 @@ export class PuzzleGame extends Scene {
      */
     shufflePieces() {
         //  Push all available moves into this array
-        const moves = [];
+        const moves: number[] = [];
 
         const spacerCol = this.spacer!.data.get('column') as number;
         const spacerRow = this.spacer!.data.get('row') as number;
