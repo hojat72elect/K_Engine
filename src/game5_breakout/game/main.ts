@@ -1,7 +1,7 @@
-import { WEBGL, Game, Scale,Types } from 'phaser';
-import {Breakout} from "./scenes/breakout.js";
+import { WEBGL, Game, Scale} from 'phaser';
+import {Breakout} from "./scenes/breakout";
 
-const config: Types.Core.GameConfig = {
+const config = {
     type: WEBGL,
     width: 800,
     height: 600,
