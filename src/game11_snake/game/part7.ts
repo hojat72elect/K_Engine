@@ -170,8 +170,8 @@ class Snake {
             const by = Math.floor(imageSegment.y / 16);
 
             // Ensure indices are within grid bounds
-            if (by >= 0 && by < grid.length && bx >= 0 && bx < grid[by].length) {
-                grid[by][bx] = false;
+            if (by >= 0 && by < grid.length && bx >= 0 && bx < grid[by]!.length) {
+                grid[by]![bx] = false;
             }
             return true;
         });
@@ -244,7 +244,7 @@ function repositionFood(): boolean {
         testGrid[y] = [];
 
         for (let x = 0; x < 40; x++) {
-            testGrid[y][x] = true;
+            testGrid[y]![x] = true;
         }
     }
 
@@ -255,7 +255,7 @@ function repositionFood(): boolean {
 
     for (let y = 0; y < 30; y++) {
         for (let x = 0; x < 40; x++) {
-            if (testGrid[y][x] === true) {
+            if (testGrid[y]![x] === true) {
                 //  Is this position valid for food? If so, add it here ...
                 validLocations.push({x, y});
             }
