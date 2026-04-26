@@ -12,6 +12,7 @@
     "game7": "vite --open game7_phaser_platformer.html",
     "game8": "vite --open game8_flood_fill.html",
     "game9": "vite --open game9_mine_sweeper.html",
+    "game10": "vite --open game10_sliding_puzzle.html",
     "build": "vite build",
     "preview": "vite preview"
   },
