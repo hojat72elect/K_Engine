@@ -1,4 +1,4 @@
-import {Cell} from "./Cell.ts";
+import {Cell} from "./Cell";
 import {Scene} from "phaser";
 import Vector2 = Phaser.Math.Vector2;
 import TimerEvent = Phaser.Time.TimerEvent;
@@ -152,9 +152,9 @@ export class Grid {
     updateDigits() {
         const count = Phaser.Utils.String.Pad(this.bombsCounter.toString(), 3, '0', 1);
 
-        this.digit1.setFrame(parseInt(count[0]));
-        this.digit2.setFrame(parseInt(count[1]));
-        this.digit3.setFrame(parseInt(count[2]));
+        this.digit1.setFrame(parseInt(count[0]!));
+        this.digit2.setFrame(parseInt(count[1]!));
+        this.digit3.setFrame(parseInt(count[2]!));
     }
 
     onButtonDown() {
@@ -252,7 +252,7 @@ export class Grid {
     generate(startIndex: number) {
         let qty = this.bombQty;
 
-        const bombs = [];
+        const bombs: any[] = [];
 
         do {
             const location = Phaser.Math.Between(0, this.size - 1);
@@ -298,9 +298,9 @@ export class Grid {
         if (this.timeCounter < 1000) {
             const count = Phaser.Utils.String.Pad(this.timeCounter.toString(), 3, '0', 1);
 
-            this.time1.setFrame(parseInt(count[0]));
-            this.time2.setFrame(parseInt(count[1]));
-            this.time3.setFrame(parseInt(count[2]));
+            this.time1.setFrame(parseInt(count[0]!));
+            this.time2.setFrame(parseInt(count[1]!));
+            this.time3.setFrame(parseInt(count[2]!));
         }
     }
 

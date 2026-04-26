@@ -1,4 +1,4 @@
-import {Grid} from "./Grid.js";
+import {Grid} from "./Grid";
 import {Scene} from "phaser";
 
 export class MineSweeperScene extends Scene {
