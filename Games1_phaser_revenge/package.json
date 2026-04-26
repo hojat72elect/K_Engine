@@ -11,6 +11,7 @@
     "game6": "vite --open game6_emoji_match.html",
     "game7": "vite --open game7_phaser_platformer.html",
     "game8": "vite --open game8_flood_fill.html",
+    "game9": "vite --open game9_mine_sweeper.html",
     "build": "vite build",
     "preview": "vite preview"
   },
