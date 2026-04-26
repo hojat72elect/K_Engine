@@ -14,6 +14,7 @@
     "game9": "vite --open game9_mine_sweeper.html",
     "game10": "vite --open game10_sliding_puzzle.html",
     "game11": "vite --open game11_snake.html",
+    "game12": "vite --open game12_snowmen_attack.html",
     "build": "vite build",
     "preview": "vite preview"
   },
