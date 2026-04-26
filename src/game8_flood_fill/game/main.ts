@@ -1,5 +1,5 @@
 import {WEBGL, Game, Scale, Types} from 'phaser';
-import {FloodFillGame} from "./FloodFillGame.ts";
+import {FloodFillGame} from "./FloodFillGame";
 
 const config: Types.Core.GameConfig = {
     type: WEBGL,

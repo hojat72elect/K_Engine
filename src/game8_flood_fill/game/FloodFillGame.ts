@@ -69,7 +69,7 @@ export class FloodFillGame extends Scene {
                 block.setData('x', sx);
                 block.setData('y', sy);
 
-                this.grid[x][y] = block;
+                this.grid[x]![y] = block;
             }
         }
 
@@ -82,10 +82,10 @@ export class FloodFillGame extends Scene {
             block.setFrame(this.frames[block.getData('color')]);
         }
 
-        this.currentColor = this.grid[0][0].getData('color');
+        this.currentColor = this.grid[0]![0]!.getData('color');
 
         for (let i = 0; i < this.frames.length; i++) {
-            this.createEmitter(this.frames[i]);
+            this.createEmitter(this.frames[i]!);
         }
 
         this.createArrow();
@@ -108,7 +108,7 @@ export class FloodFillGame extends Scene {
             const x = Math.Between(0, 13);
             const y = Math.Between(0, 13);
 
-            const oldColor = this.grid[x][y].getData('color') as number;
+            const oldColor = this.grid[x]![y]!.getData('color') as number;
             let newColor = oldColor + 1;
 
             if (newColor === 6) {
@@ -166,13 +166,13 @@ export class FloodFillGame extends Scene {
 
         for (let y = 13; y >= 0; y--) {
             for (let x = 0; x < 14; x++) {
-                const block = this.grid[x][y];
+                const block = this.grid[x]![y];
 
                 this.tweens.add({
 
                     targets: block,
 
-                    y: block.getData('y'),
+                    y: block!.getData('y'),
 
                     ease: 'Power3',
                     duration: 800,
@@ -357,7 +357,7 @@ export class FloodFillGame extends Scene {
             return;
         }
 
-        const oldColor = this.grid[0][0].getData('color');
+        const oldColor = this.grid[0]![0]!.getData('color');
 
         if (oldColor !== newColor) {
             this.currentColor = newColor;
@@ -447,11 +447,11 @@ export class FloodFillGame extends Scene {
     }
 
     checkWon() {
-        const topLeft = this.grid[0][0].getData('color');
+        const topLeft = this.grid[0]![0]!.getData('color');
 
         for (let x = 0; x < 14; x++) {
             for (let y = 0; y < 14; y++) {
-                if (this.grid[x][y].getData('color') !== topLeft) {
+                if (this.grid[x]![y]!.getData('color') !== topLeft) {
                     return false;
                 }
             }
@@ -483,7 +483,7 @@ export class FloodFillGame extends Scene {
 
         for (let y = 13; y >= 0; y--) {
             for (let x = 0; x < 14; x++) {
-                const block = this.grid[x][y];
+                const block = this.grid[x]![y];
 
                 this.tweens.add({
 
@@ -555,15 +555,15 @@ export class FloodFillGame extends Scene {
 
         for (let y = 13; y >= 0; y--) {
             for (let x = 0; x < 14; x++) {
-                const block = this.grid[x][y];
+                const block = this.grid[x]![y];
 
                 //  Set a new color
                 const color = Phaser.Math.Between(0, 5);
 
-                block.setFrame(this.frames[color]);
+                block!.setFrame(this.frames[color]!);
 
-                block.setData('oldColor', color);
-                block.setData('color', color);
+                block!.setData('oldColor', color);
+                block!.setData('color', color);
 
                 this.tweens.add({
 
@@ -591,7 +591,7 @@ export class FloodFillGame extends Scene {
             block.setFrame(this.frames[block.getData('color')]);
         }
 
-        this.currentColor = this.grid[0][0].getData('color');
+        this.currentColor = this.grid[0]![0]!.getData('color');
 
         this.tweens.addCounter({
             from: 0,
@@ -650,15 +650,15 @@ export class FloodFillGame extends Scene {
     }
 
     floodFill(oldColor: number, newColor: number, x: number, y: number) {
-        if (oldColor === newColor || this.grid[x][y].getData('color') !== oldColor) {
+        if (oldColor === newColor || this.grid[x]![y]!.getData('color') !== oldColor) {
             return;
         }
 
-        this.grid[x][y].setData('oldColor', oldColor);
-        this.grid[x][y].setData('color', newColor);
+        this.grid[x]![y]!.setData('oldColor', oldColor);
+        this.grid[x]![y]!.setData('color', newColor);
 
-        if (this.matched.indexOf(this.grid[x][y]) === -1) {
-            this.matched.push(this.grid[x][y]);
+        if (this.matched.indexOf(this.grid[x]![y]) === -1) {
+            this.matched.push(this.grid[x]![y]);
         }
 
         if (x > 0) {
