@@ -1,8 +1,8 @@
 import {AUTO, Game, Scale, Types} from 'phaser';
-import {Preloader} from "./Preloader.ts";
-import {UI} from "./UI.ts";
-import {Play} from "./Play.ts";
-import {Menu} from "./Menu.ts";
+import {Preloader} from "./Preloader";
+import {UI} from "./UI";
+import {Play} from "./Play";
+import {Menu} from "./Menu";
 
 const config: Types.Core.GameConfig = {
     type: AUTO,

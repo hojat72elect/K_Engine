@@ -17,7 +17,7 @@ export class TomatoItem extends StaticGroup {
     }
 
     destroyItem() {
-        this.children.entries[0].destroy();
+        this.children.entries[0]!.destroy();
         this.addTomatoItem();
     }
 

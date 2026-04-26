@@ -1,6 +1,6 @@
-import {Tomato} from './Tomato.ts';
-import {Bombs} from './Bombs.ts';
-import {TomatoItem} from './TomatoItem.ts';
+import {Tomato} from './Tomato';
+import {Bombs} from './Bombs';
+import {TomatoItem} from './TomatoItem';
 import StaticGroup = Phaser.Physics.Arcade.StaticGroup;
 
 /**
@@ -10,8 +10,6 @@ import StaticGroup = Phaser.Physics.Arcade.StaticGroup;
  * watch out! If you collide with a bomb with spikes, you'll lose a life. The goal is to collect as many tomatoes
  * as possible while avoiding bombs and preserving your lives. Can you make it to the end of the game with all
  * your lives intact and become the ultimate tomato-collecting champion? Play now and find out!
- * Game created by Francisco Pereira (Gammafp)
- * - PixelArt created by @VeryEvilTomato
  */
 export class Play extends Phaser.Scene {
 

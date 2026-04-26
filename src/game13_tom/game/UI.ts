@@ -38,7 +38,7 @@ export class UI extends Scene {
 
         // Events
         this.registry.events.on('remove_life', () => {
-            this.groupLife.getChildren()[this.groupLife.getChildren().length - 1].destroy();
+            this.groupLife.getChildren()[this.groupLife.getChildren().length - 1]!.destroy();
         });
         this.registry.events.on('game_over', () => {
             this.registry.events.removeAllListeners();
