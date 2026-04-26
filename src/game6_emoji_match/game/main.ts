@@ -1,10 +1,10 @@
-import { AUTO, Game, Scale,Types } from 'phaser';
-import {Boot} from "./scenes/Boot.ts";
-import {Preloader} from "./scenes/Preloader.ts";
-import {MainMenu} from "./scenes/MainMenu.ts";
-import {MainGame} from "./scenes/MainGame.ts";
+import { AUTO, Game, Scale } from 'phaser';
+import {Boot} from "./scenes/Boot";
+import {Preloader} from "./scenes/Preloader";
+import {MainMenu} from "./scenes/MainMenu";
+import {MainGame} from "./scenes/MainGame";
 
-const config: Types.Core.GameConfig = {
+const config = {
     type: AUTO,
     width: 800,
     height: 600,

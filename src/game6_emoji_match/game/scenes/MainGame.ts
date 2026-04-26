@@ -171,8 +171,8 @@ export class MainGame extends Phaser.Scene {
         let index1 = Number(Phaser.Utils.Array.RemoveRandomElement(selected));
         let index2 = Number(Phaser.Utils.Array.RemoveRandomElement(selected));
 
-        this.child1 = children[index1];
-        this.child2 = children[index2];
+        this.child1 = children[index1]!;
+        this.child2 = children[index2]!;
 
         //  Set the frame to match
         (this.child2 as any).setFrame((this.child1 as any).frame.name);
