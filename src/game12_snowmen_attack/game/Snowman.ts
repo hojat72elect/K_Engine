@@ -1,8 +1,8 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
 import Clock = Phaser.Time.Clock;
 import TimerEvent = Phaser.Time.TimerEvent;
-import {MainGame} from "./MainGame.ts";
-import {Track} from "./Track.ts";
+import {MainGame} from "./MainGame";
+import {Track} from "./Track";
 
 export class Snowman extends Sprite {
 

@@ -1,5 +1,5 @@
-import {Track} from './Track.ts';
-import {Player} from './Player.ts';
+import {Track} from './Track';
+import {Player} from './Player';
 import Image = Phaser.GameObjects.Image;
 import Text = Phaser.GameObjects.Text;
 import TimerEvent = Phaser.Time.TimerEvent;
@@ -32,7 +32,7 @@ export class MainGame extends Phaser.Scene {
             new Track(this, 3, 700)
         ];
 
-        this.player = new Player(this, this.tracks[0]);
+        this.player = new Player(this, this.tracks[0]!);
 
         this.add.image(0, 0, 'overlay').setOrigin(0);
 
@@ -69,10 +69,10 @@ export class MainGame extends Phaser.Scene {
 
         this.player.start();
 
-        this.tracks[0].start(4000, 8000);
-        this.tracks[1].start(500, 1000);
-        this.tracks[2].start(5000, 9000);
-        this.tracks[3].start(6000, 10000);
+        this.tracks[0]!.start(4000, 8000);
+        this.tracks[1]!.start(500, 1000);
+        this.tracks[2]!.start(5000, 9000);
+        this.tracks[3]!.start(6000, 10000);
 
         this.scoreTimer = this.time.addEvent({
             delay: 1000, callback: () => {

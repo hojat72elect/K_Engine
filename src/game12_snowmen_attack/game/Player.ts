@@ -1,7 +1,7 @@
 import Sprite = Phaser.Physics.Arcade.Sprite;
 import Key = Phaser.Input.Keyboard.Key;
-import {MainGame} from "./MainGame.ts";
-import {Track} from "./Track.ts";
+import {MainGame} from "./MainGame";
+import {Track} from "./Track";
 
 export class Player extends Sprite {
 
@@ -34,7 +34,7 @@ export class Player extends Sprite {
         this.isAlive = true;
         this.isThrowing = false;
 
-        this.currentTrack = (this.scene as MainGame).tracks[0];
+        this.currentTrack = (this.scene as MainGame).tracks[0]!;
         this.y = this.currentTrack.y;
 
         this.on('animationcomplete-throwStart', this.releaseSnowball, this);
@@ -45,9 +45,9 @@ export class Player extends Sprite {
 
     moveUp() {
         if (this.currentTrack.id === 0) {
-            this.currentTrack = (this.scene as MainGame).tracks[3];
+            this.currentTrack = (this.scene as MainGame).tracks[3]!;
         } else {
-            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id - 1];
+            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id - 1]!;
         }
 
         this.y = this.currentTrack.y;
@@ -57,9 +57,9 @@ export class Player extends Sprite {
 
     moveDown() {
         if (this.currentTrack.id === 3) {
-            this.currentTrack = (this.scene as MainGame).tracks[0];
+            this.currentTrack = (this.scene as MainGame).tracks[0]!;
         } else {
-            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id + 1];
+            this.currentTrack = (this.scene as MainGame).tracks[this.currentTrack.id + 1]!;
         }
 
         this.y = this.currentTrack.y;
