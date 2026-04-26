@@ -1,7 +1,7 @@
-import {AUTO, Game, Scale, Types} from 'phaser';
-import {PhaserPlatformerGame} from "./PhaserPlatformerGame.ts";
+import {AUTO, Game, Scale} from 'phaser';
+import {PhaserPlatformerGame} from "./PhaserPlatformerGame";
 
-const config: Types.Core.GameConfig = {
+const config = {
     type: AUTO,
     width: 800,
     height: 600,
