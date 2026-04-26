@@ -1,5 +1,5 @@
 import {Physics, type Scene} from "phaser";
-import {Bullet} from "./Bullet.js";
+import {Bullet} from "./Bullet";
 
 export class Player extends Physics.Arcade.Image {
 

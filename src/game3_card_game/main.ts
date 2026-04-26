@@ -1,5 +1,5 @@
-import {Preloader} from './Preloader.ts';
-import {Play} from './Play.ts';
+import {Preloader} from './Preloader';
+import {Play} from './Play';
 import {AUTO, Game, Scale} from 'phaser';
 
 const config = {

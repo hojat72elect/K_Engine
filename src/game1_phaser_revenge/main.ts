@@ -1,14 +1,11 @@
 import {Game} from "phaser";
-import {Preloader} from "./preloader.js";
-import {GameOverScene} from "./scenes/GameOverScene.js";
-import {HudScene} from "./scenes/HudScene.js";
-import {MainScene} from "./scenes/MainScene.js";
-import {MenuScene} from "./scenes/MenuScene.js";
-import {SplashScene} from "./scenes/SplashScene.js";
+import {Preloader} from "./preloader";
+import {GameOverScene} from "./scenes/GameOverScene";
+import {HudScene} from "./scenes/HudScene";
+import {MainScene} from "./scenes/MainScene";
+import {MenuScene} from "./scenes/MenuScene";
+import {SplashScene} from "./scenes/SplashScene";
 
-/**
- * Configuration of the game.
- */
 const config = {
     type: Phaser.AUTO,
     parent: "phaser-container",

@@ -1,6 +1,6 @@
 import type {Scene} from "phaser";
 import {Math} from "phaser";
-import {Bullet} from "./Bullet.js";
+import {Bullet} from "./Bullet";
 import Sprite = Phaser.Physics.Arcade.Sprite;
 import Tween = Phaser.Tweens.Tween;
 import Group = Phaser.Physics.Arcade.Group;

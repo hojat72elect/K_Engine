@@ -1,5 +1,4 @@
-//@ts-check
-import {createCard} from './createCard.ts';
+import {createCard} from './createCard';
 import * as Phaser from 'phaser'; // Warning!! Don't change this line, your math library will act weirdly.
 
 /**
@@ -270,7 +269,7 @@ export class Play extends Phaser.Scene {
                                     duration: 1000,
                                     y: -1000,
                                     onComplete: () => {
-                                        lastHeart.destroy();
+                                        lastHeart!.destroy();
                                         hearts.pop();
                                     }
                                 });

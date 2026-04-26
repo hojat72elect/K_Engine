@@ -1,8 +1,8 @@
 import {Scene} from "phaser";
-import {Player} from "../game_objects/Player.js";
-import {EnemyShip} from "../game_objects/EnemyShip.js";
-import type {Bullet} from "../game_objects/Bullet.js";
-import type {HudScene} from "./HudScene.js";
+import {Player} from "../game_objects/Player";
+import {EnemyShip} from "../game_objects/EnemyShip";
+import type {Bullet} from "../game_objects/Bullet";
+import type {HudScene} from "./HudScene";
 
 export class MainScene extends Scene {
     player!: Player;
