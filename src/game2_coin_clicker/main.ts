@@ -1,9 +1,9 @@
-import {Boot} from './scenes/Boot.js';
-import {ClickerGame} from './scenes/ClickerGame.js';
+import {Boot} from './scenes/Boot';
+import {ClickerGame} from './scenes/ClickerGame';
 import {Game} from 'phaser';
-import {GameOver} from './scenes/GameOver.js';
-import {MainMenu} from './scenes/MainMenu.js';
-import {Preloader} from './scenes/Preloader.js';
+import {GameOver} from './scenes/GameOver';
+import {MainMenu} from './scenes/MainMenu';
+import {Preloader} from './scenes/Preloader';
 
 const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
