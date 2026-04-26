@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
-import Preloader from './Preloader.js';
-import MainMenu from './MainMenu.js';
-import MainGame from './Game.js';
-import Boot from "./Boot.js";
+import Preloader from './Preloader';
+import MainMenu from './MainMenu';
+import MainGame from './Game';
+import Boot from "./Boot";
 
 const config = {
     type: Phaser.AUTO,

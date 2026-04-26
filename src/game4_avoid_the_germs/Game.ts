@@ -1,6 +1,6 @@
-import Germs from './Germs.js';
-import Player from './Player.js';
-import Pickups from './Pickups.js';
+import Germs from './Germs';
+import Player from './Player';
+import Pickups from './Pickups';
 
 export default class MainGame extends Phaser.Scene {
 

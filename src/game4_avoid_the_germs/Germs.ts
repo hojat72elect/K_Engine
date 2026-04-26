@@ -1,6 +1,5 @@
 import Phaser from "phaser";
-//@ts-ignore
-import Germ from './Germ.js';
+import Germ from './Germ';
 
 export default class Germs extends Phaser.Physics.Arcade.Group {
 
@@ -21,9 +20,9 @@ export default class Germs extends Phaser.Physics.Arcade.Group {
     }
 
     start() {
-        let germ1 = new Germ(this.scene, 100, 100, 'germ1');
-        let germ2 = new Germ(this.scene, 700, 600, 'germ1');
-        let germ3 = new Germ(this.scene, 200, 400, 'germ1');
+        let germ1 = new Germ(this.scene, 100, 100, 'germ1', null);
+        let germ2 = new Germ(this.scene, 700, 600, 'germ1', null);
+        let germ3 = new Germ(this.scene, 200, 400, 'germ1', null);
 
         this.add(germ1, true);
         this.add(germ2, true);
@@ -31,7 +30,7 @@ export default class Germs extends Phaser.Physics.Arcade.Group {
 
         germ1.start(1000);
         germ2.start(2000);
-        germ3.start();
+        germ3.start(0);
 
         this.timedEvent = this.scene.time.addEvent({
             delay: 2000,
